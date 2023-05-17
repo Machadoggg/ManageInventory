@@ -4,7 +4,7 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Books List</h1>
+<h1>Inventory List</h1>
 
 <p>
     <a asp-action="Create" class="btn btn-sm btn-primary">Create New Book</a>
@@ -21,40 +21,30 @@
             <th>
                 @Html.DisplayNameFor(model => model.NumberPages)
             </th>
-            @*<th>
-                @Html.DisplayNameFor(model => model.IdEditorialNavigation)
-            </th>*@
-            <th></th>
+            <th>Actions</th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Title)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Sinopsis)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NumberPages)
-            </td>
-            @*<td>
-                @Html.DisplayFor(modelItem => item.IdEditorialNavigation.IdEditorial)
-            </td>*@
-            <td>
-                @*<a asp-action="Edit" asp-route-id="@item.Isbn">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Isbn">Details</a>|
-                <a asp-action="Delete" asp-route-id="@item.Isbn">Delete</a>*@
-
-                <div class="btn-group">
-                        <a asp-action="Details" asp-route-id="@item.Isbn" class="btn btn-sm btn-info">Details</a>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Sinopsis)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NumberPages)
+                </td>
+                <td>
+                    <div class="btn-group">
+                        <a asp-action="Details" asp-route-id="@item.Isbn" class="btn btn-sm btn-warning">Details</a>
                         <a asp-action="Edit" asp-route-id="@item.Isbn" class="btn btn-sm btn-primary">Edit</a>
                         <a asp-action="Delete" asp-route-id="@item.Isbn" class="btn btn-sm btn-danger">Delete</a>
-                </div>
-
-            </td>
-        </tr>
-}
+                    </div>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

@@ -30,12 +30,15 @@ public partial class LibraryContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<AuthorsHasBook>(entity =>
-        {
-            entity.HasOne(d => d.IdAuthorsNavigation).WithMany().HasConstraintName("FK_Authors_Has_Books_Authors");
+        //modelBuilder.Entity<AuthorsHasBook>(entity =>
+        //{
+        //    entity.HasOne(d => d.IdAuthorsNavigation).WithMany().HasConstraintName("FK_Authors_Has_Books_Authors");
 
-            entity.HasOne(d => d.IsbnNavigation).WithMany().HasConstraintName("FK_Authors_Has_Books_Books");
-        });
+        //    entity.HasOne(d => d.IsbnNavigation).WithMany().HasConstraintName("FK_Authors_Has_Books_Books");
+        //});
+
+        modelBuilder.Entity<AuthorsHasBook>()
+            .HasKey(a => new { a.IdAuthor, a.Isbn });
 
         modelBuilder.Entity<Book>(entity =>
         {

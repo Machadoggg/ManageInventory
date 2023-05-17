@@ -15,6 +15,7 @@ public partial class Book
 
     public int? IdEditorial { get; set; }
 
+
     [StringLength(45)]
     [Unicode(false)]
     public string? Title { get; set; }
@@ -29,4 +30,6 @@ public partial class Book
     [ForeignKey("IdEditorial")]
     [InverseProperty("Books")]
     public virtual Editorial? IdEditorialNavigation { get; set; }
+
+
 }
