@@ -23,6 +23,7 @@ public partial class Book
     public string? Sinopsis { get; set; }
 
     [StringLength(50)]
+    [Display (Name = "Number Pages")]
     public string? NumberPages { get; set; }
 
     [ForeignKey("IdEditorial")]

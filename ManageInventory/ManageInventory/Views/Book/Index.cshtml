@@ -9,7 +9,7 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
-<table class="table">
+<table class="table table-striped table-bordered">
     <thead>
         <tr>
             <th>
@@ -43,9 +43,14 @@
                 @Html.DisplayFor(modelItem => item.IdEditorialNavigation.IdEditorial)
             </td>*@
             <td>
-                @*<a asp-action="Edit" asp-route-id="@item.Isbn">Edit</a> |*@
-                <a asp-action="Details" asp-route-id="@item.Isbn">Details</a> @*|
+                @*<a asp-action="Edit" asp-route-id="@item.Isbn">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Isbn">Details</a>|
                 <a asp-action="Delete" asp-route-id="@item.Isbn">Delete</a>*@
+
+                <div class="btn-group">
+                        <a asp-action="Details" asp-route-id="@item.Isbn" class="btn btn-sm btn-primary">Details</a>
+                </div>
+
             </td>
         </tr>
 }

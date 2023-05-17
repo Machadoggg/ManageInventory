@@ -19,5 +19,11 @@ namespace ManageInventory.Controllers
 
             return View(books);
         }
+
+        public IActionResult Details(string Id) 
+        {
+            Book? book = _context.Books.Where(b => b.Isbn == Id).FirstOrDefault();
+            return View(book);
+        }
     }
 }
