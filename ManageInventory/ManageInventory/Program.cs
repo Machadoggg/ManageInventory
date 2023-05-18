@@ -1,3 +1,4 @@
+using AutoMapper;
 using ManageInventory.Data;
 using ManageInventory.Repositories;
 
@@ -5,6 +6,18 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+
+
+var mapperConfig = new MapperConfiguration(m =>
+{
+    m.CreateMap<ManageInventory.Models.Book, ManageInventory.DTO.BookDetailDTO>();
+});
+IMapper mapper = mapperConfig.CreateMapper();
+builder.Services.AddSingleton(mapper);
+builder.Services.AddMvc();
+
+
 
 builder.Services.AddDbContext<LibraryContext>();
 builder.Services.AddScoped<IBookRepository, BookRepository>();

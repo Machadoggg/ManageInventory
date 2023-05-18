@@ -1,4 +1,6 @@
-﻿using ManageInventory.Data;
+﻿using AutoMapper;
+using ManageInventory.Data;
+using ManageInventory.DTO;
 using ManageInventory.Models;
 using ManageInventory.Repositories;
 using Microsoft.AspNetCore.Authorization;
@@ -14,11 +16,13 @@ namespace ManageInventory.Controllers
     {
         private readonly LibraryContext _context;
         private readonly IBookRepository _bookRepository;
+        private readonly IMapper _mapper;
 
-        public BookController(IBookRepository iBookRepository, LibraryContext context)
+        public BookController(IBookRepository iBookRepository, LibraryContext context, IMapper mapper)
         {
             _bookRepository = iBookRepository;
             _context = context;
+            _mapper = mapper;
         }
 
 
@@ -32,11 +36,18 @@ namespace ManageInventory.Controllers
 
 
         [HttpGet]
-        public async Task<ActionResult<Book>> Details(string Id)
+        //public async Task<ActionResult<Book>> Details(string Id)
+        //{
+        //    Book? book = await _context.Books.Where(b => b.Isbn == Id).FirstOrDefaultAsync();
+        //    return View(book);
+        //}
+        public IActionResult Details(Book? book, string Id)
         {
-            Book? book = await _context.Books.Where(b => b.Isbn == Id).FirstOrDefaultAsync();
-            return View(book);
+            book = _context.Books.Where(b => b.Isbn == Id).FirstOrDefault();
+            BookDetailDTO? bookDetailDTO = _mapper.Map<BookDetailDTO>(book);
+            return View(bookDetailDTO);
         }
+
 
         [HttpGet]
         public IActionResult Create()

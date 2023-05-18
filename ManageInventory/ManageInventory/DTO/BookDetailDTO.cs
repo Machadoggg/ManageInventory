@@ -6,32 +6,32 @@ using System.ComponentModel.DataAnnotations;
 
 namespace ManageInventory.DTO
 {
-    public class BookDTO
+    public class BookDetailDTO
     {
-        [Key]
-        [Column("ISBN")]
-        [StringLength(13)]
-        public string Isbn { get; set; } = null!;
-
+        //public string Isbn { get; set; } = null!;
+        [Display(Name = "Id Editorial")]
         public int? IdEditorial { get; set; }
+        [Display(Name = "Editorial Name")]
+        public string? EditorialName { get; set; }
+        //public virtual Editorial Editorial { get; set; }
 
-
-        [StringLength(45)]
-        [Unicode(false)]
         public string? Title { get; set; }
 
-        [Column(TypeName = "text")]
         public string? Sinopsis { get; set; }
 
-        [StringLength(50)]
         [Display(Name = "Number Pages")]
         public string? NumberPages { get; set; }
+        [NotMapped]
+        [Display(Name = "Author Name")]
+        public string? AuthorName { get; set; }
 
-        [ForeignKey("IdEditorial")]
-        [InverseProperty("Books")]
-        public virtual Editorial? IdEditorialNavigation { get; set; }
+        //public virtual Editorial? IdEditorialNavigation { get; set; }
 
         [NotMapped]
+        [Display(Name = "Id Author")]
         public virtual Author? IdAuthor { get; set; }
+        
+        //public virtual Author? AuthorName { get; set; }
+
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
+using ManageInventory.Models;
 
 namespace ManageInventory.Models;
 
@@ -14,6 +15,8 @@ public partial class Book
     public string Isbn { get; set; } = null!;
 
     public int? IdEditorial { get; set; }
+    [NotMapped]
+    public virtual Editorial? Editorial { get; set; }
 
 
     [StringLength(45)]
@@ -33,6 +36,8 @@ public partial class Book
 
     [NotMapped]
     public virtual Author? IdAuthor { get; set; }
+    [NotMapped]
+    public virtual Author? Author { get; set; }
 
 
 }
