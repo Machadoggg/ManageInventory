@@ -13,7 +13,7 @@ namespace ManageInventory.Repositories
             _context = libraryContext;
         }
 
-        public async Task<Book> AddBook(Book book)
+        public async Task<Book> AddBook(Book book, AuthorsHasBook authorsHasBook)
         {
             var newBook = new Book { 
                 Isbn = book.Isbn,
@@ -23,6 +23,12 @@ namespace ManageInventory.Repositories
             };
             _context.Books.Add(newBook);
             await _context.SaveChangesAsync();
+
+            //authorsHasBook.IdAuthor = 1;
+            _context.Attach(authorsHasBook);
+            _context.Entry(authorsHasBook).State = EntityState.Added;
+            _context.SaveChanges();
+
             return newBook;
         }
 

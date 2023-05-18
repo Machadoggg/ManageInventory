@@ -40,7 +40,18 @@ namespace ManageInventory.Controllers
         [ActionName("Index")]
         public async Task<ActionResult<IEnumerable<Book>>> GetBooks()
         {
-            return View((List<Book>)await _bookRepository.GetBooksAsync());
+            IEnumerable<Book>? ResultBooksList = default;
+            try
+            {
+                ResultBooksList = (List<Book>)await _bookRepository.GetBooksAsync();
+            }
+            catch (Exception ex)
+            {
+
+                Console.WriteLine(ex.Message, "Error al mostrar la lista de libros");
+            }
+
+            return View(ResultBooksList);
         }
 
         [HttpGet]
@@ -71,13 +82,14 @@ namespace ManageInventory.Controllers
                     select new DropDownListModel
                     {
                         Id = d.IdAuthor,
-                        Name = d.Name
+                        Name = d.Name,
+                        LastName = d.LastName
                     }).ToList();
             List<SelectListItem> itemsAuthor = listAuthors.ConvertAll(d =>
             {
                 return new SelectListItem()
                 {
-                    Text = d.Name?.ToString(),
+                    Text = d.Name?.ToString() + " " + d.LastName?.ToString(),
                     Value = d.Id.ToString()
                 };
             });
@@ -87,37 +99,14 @@ namespace ManageInventory.Controllers
             return View(book);
         }
 
-        //[HttpPost]
-        //public IActionResult Create(Book book, AuthorsHasBook authorsHasBook)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        _context.Attach(book);
-        //        _context.Entry(book).State = EntityState.Added;
-        //        _context.SaveChanges();
-
-        //        authorsHasBook.IdAuthor = 1;
-
-        //        _context.Attach(authorsHasBook);
-        //        _context.Entry(authorsHasBook).State = EntityState.Added;
-        //        _context.SaveChanges();
-
-        //        return RedirectToAction("Index");
-        //    }
-        //    return RedirectToAction("Index");
-        //}
-
         [HttpPost]
         [AllowAnonymous]
         [ActionName("Create")]
-        public async Task<ActionResult<Book>> AddBooks(Book book)
+        public async Task<ActionResult<Book>> AddBooks(Book book, AuthorsHasBook authorsHasBook)
         {
-            await _bookRepository.AddBook(book);
+            await _bookRepository.AddBook(book, authorsHasBook);
             return RedirectToAction("Index");
         }
-
-
-
 
 
         [HttpGet]
@@ -126,7 +115,6 @@ namespace ManageInventory.Controllers
             Book? book = _context.Books.Where(b => b.Isbn == Id).FirstOrDefault();
             return View(book);
         }
-
         [HttpPost]
         public IActionResult Edit(Book book)
         {
@@ -143,20 +131,20 @@ namespace ManageInventory.Controllers
             Book? book = _context.Books.Where(b => b.Isbn == Id).FirstOrDefault();
             return View(book);
         }
-
         [HttpPost]
         public IActionResult Delete(Book book)
         {
             _context.Attach(book);
-            _context.Entry(book).State = EntityState.Deleted;
+            _context.Remove(book).State = EntityState.Deleted;
             _context.SaveChanges();
             return RedirectToAction("Index");
         }
 
 
-        public IActionResult Details(string Id) 
+        [HttpGet]
+        public async Task<ActionResult<Book>> Details(string Id) 
         {
-            Book? book = _context.Books.Where(b => b.Isbn == Id).FirstOrDefault();
+            Book? book = await _context.Books.Where(b => b.Isbn == Id).FirstOrDefaultAsync();
             return View(book);
         }
     }

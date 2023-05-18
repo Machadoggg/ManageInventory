@@ -31,5 +31,8 @@ public partial class Book
     [InverseProperty("Books")]
     public virtual Editorial? IdEditorialNavigation { get; set; }
 
+    [NotMapped]
+    public virtual Author? IdAuthor { get; set; }
+
 
 }
