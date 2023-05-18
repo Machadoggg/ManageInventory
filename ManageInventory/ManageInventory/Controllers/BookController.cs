@@ -1,5 +1,7 @@
 ﻿using ManageInventory.Data;
 using ManageInventory.Models;
+using ManageInventory.Repositories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -12,17 +14,33 @@ namespace ManageInventory.Controllers
     {
         private readonly LibraryContext _context;
 
-        public BookController(LibraryContext context)
+        //public BookController(LibraryContext context)
+        //{
+        //    //_context = context;
+
+        //}
+
+        //public IActionResult Index()
+        //{
+        //    List<Book> books = _context.Books.ToList();
+
+        //    return View(books);
+        //}
+
+        private readonly IBookRepository _bookRepository;
+        public BookController(IBookRepository iBookRepository, LibraryContext context)
         {
+            _bookRepository = iBookRepository;
             _context = context;
         }
 
 
-        public IActionResult Index()
+        [HttpGet]
+        [AllowAnonymous]
+        [ActionName("Index")]
+        public async Task<ActionResult<IEnumerable<Book>>> GetBooks()
         {
-            List<Book> books = _context.Books.ToList(); 
-
-            return View(books);
+            return View((List<Book>)await _bookRepository.GetBooksAsync());
         }
 
         [HttpGet]
@@ -69,25 +87,38 @@ namespace ManageInventory.Controllers
             return View(book);
         }
 
+        //[HttpPost]
+        //public IActionResult Create(Book book, AuthorsHasBook authorsHasBook)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        _context.Attach(book);
+        //        _context.Entry(book).State = EntityState.Added;
+        //        _context.SaveChanges();
+
+        //        authorsHasBook.IdAuthor = 1;
+
+        //        _context.Attach(authorsHasBook);
+        //        _context.Entry(authorsHasBook).State = EntityState.Added;
+        //        _context.SaveChanges();
+
+        //        return RedirectToAction("Index");
+        //    }
+        //    return RedirectToAction("Index");
+        //}
+
         [HttpPost]
-        public IActionResult Create(Book book, AuthorsHasBook authorsHasBook)
+        [AllowAnonymous]
+        [ActionName("Create")]
+        public async Task<ActionResult<Book>> AddBooks(Book book)
         {
-            if (ModelState.IsValid)
-            {
-                _context.Attach(book);
-                _context.Entry(book).State = EntityState.Added;
-                _context.SaveChanges();
-
-                authorsHasBook.IdAuthor = 1;
-
-                _context.Attach(authorsHasBook);
-                _context.Entry(authorsHasBook).State = EntityState.Added;
-                _context.SaveChanges();
-
-                return RedirectToAction("Index");
-            }
+            await _bookRepository.AddBook(book);
             return RedirectToAction("Index");
         }
+
+
+
+
 
         [HttpGet]
         public IActionResult Edit(string Id) 
