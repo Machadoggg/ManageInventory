@@ -18,9 +18,9 @@ public class AuthorsHasBook
     [StringLength(13)]
     public string? Isbn { get; set; }
 
-    //[ForeignKey("IdAuthor")]
-    //public virtual Author? IdAuthor { get; set; }
+    
+    public virtual Author? IdAuthorsNavigation { get; set; }
 
-    //[ForeignKey("Isbn")]
-    //public virtual Book? IsbnNavigation { get; set; }
+    [ForeignKey("Isbn")]
+    public virtual Book? IsbnNavigation { get; set; }
 }

@@ -18,4 +18,7 @@ public partial class Author
     [StringLength(45)]
     [Unicode(false)]
     public string? LastName { get; set; }
+
+    [NotMapped]
+    public virtual AuthorsHasBook? AuthorsHasBook { get; set; }
 }

@@ -17,6 +17,7 @@ namespace ManageInventory.DTO
                 .ForMember(dest => dest.NumberPages, opts => opts.MapFrom(src => src.NumberPages))
                 .ForMember(dest => dest.AuthorName, opts => opts.MapFrom(src => src.Author.Name))
                 .ForMember(dest => dest.IdAuthor, opts => opts.MapFrom(src => src.Author.IdAuthor));
+
         }
     }
 }

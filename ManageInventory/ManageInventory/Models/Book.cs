@@ -38,6 +38,9 @@ public partial class Book
     public virtual Author? IdAuthor { get; set; }
     [NotMapped]
     public virtual Author? Author { get; set; }
+    [NotMapped]
+    public virtual AuthorsHasBook? AuthorsHasBook { get; set; }
+    
 
 
 }
