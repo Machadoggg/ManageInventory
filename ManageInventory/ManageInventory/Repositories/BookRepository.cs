@@ -13,10 +13,13 @@ namespace ManageInventory.Repositories
             _context = libraryContext;
         }
 
-        public async Task<Book> AddBook(Book book, AuthorsHasBook authorsHasBook)
+
+        public async Task<Book> AddBookAsync(Book book, AuthorsHasBook authorsHasBook)
         {
-            var newBook = new Book { 
+            var newBook = new Book
+            {
                 Isbn = book.Isbn,
+                IdEditorial = book.IdEditorial,
                 Title = book.Title,
                 Sinopsis = book.Sinopsis,
                 NumberPages = book.NumberPages
@@ -24,7 +27,6 @@ namespace ManageInventory.Repositories
             _context.Books.Add(newBook);
             await _context.SaveChangesAsync();
 
-            //authorsHasBook.IdAuthor = 1;
             _context.Attach(authorsHasBook);
             _context.Entry(authorsHasBook).State = EntityState.Added;
             _context.SaveChanges();
@@ -32,9 +34,59 @@ namespace ManageInventory.Repositories
             return newBook;
         }
 
+        public async Task<Book> BookByIsbnAsync(string isbn)
+        {
+            Book? ResultBookByIsbn = default;
+            try
+            {
+                ResultBookByIsbn = await _context.Books.FirstOrDefaultAsync(W => W.Isbn == isbn);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message, "Error in ID selected");
+            }
+            return ResultBookByIsbn;
+        }
+
         public async Task<IEnumerable<Book>> GetBooksAsync()
         {
             return await _context.Books.ToListAsync();
+        }
+
+        public async Task<Book> MergeBookAsync(Book book)
+        {
+            Book ResultEditBook = default;
+            try
+            {
+                _context.Attach(book).State = EntityState.Modified;
+                if (await _context.SaveChangesAsync() > 0)
+                {
+                    ResultEditBook = book;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message, "Error to edit book");
+            }
+            return ResultEditBook;
+        }
+
+        public async Task<Book> DeleteBookAsync(Book book)
+        {
+            Book ResultDeleteBook = default;
+            try
+            {
+                _context.Remove(book).State = EntityState.Deleted;
+                if (await _context.SaveChangesAsync() > 0)
+                {
+                    ResultDeleteBook = book;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message, "Error to delete book");
+            }
+            return ResultDeleteBook;
         }
     }
 }

@@ -4,7 +4,14 @@ namespace ManageInventory.Repositories
 {
     public interface IBookRepository
     {
-        public Task<IEnumerable<Book>> GetBooksAsync();
-        public Task<Book> AddBook(Book book, AuthorsHasBook authorsHasBook);
+        Task<IEnumerable<Book>> GetBooksAsync();
+
+        Task<Book> AddBookAsync(Book book, AuthorsHasBook authorsHasBook);
+
+        Task<Book> BookByIsbnAsync(string isbn);
+
+        Task<Book> MergeBookAsync(Book book);
+
+        Task<Book> DeleteBookAsync(Book book);
     }
 }
