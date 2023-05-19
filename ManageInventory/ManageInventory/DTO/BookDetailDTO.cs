@@ -25,7 +25,7 @@ namespace ManageInventory.DTO
         [Display(Name = "Author Name")]
         public string? AuthorName { get; set; }
 
-        //public virtual Editorial? IdEditorialNavigation { get; set; }
+        public Editorial IdEditorialNavigation { get; set; } = default!;
 
         [NotMapped]
         [Display(Name = "Id Author")]

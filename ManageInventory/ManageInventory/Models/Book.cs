@@ -15,8 +15,8 @@ public partial class Book
     public string Isbn { get; set; } = null!;
 
     public int? IdEditorial { get; set; }
-    [NotMapped]
-    public virtual Editorial? Editorial { get; set; }
+    //[NotMapped]
+    //public virtual Editorial? Editorial { get; set; }
 
 
     [StringLength(45)]
@@ -27,20 +27,20 @@ public partial class Book
     public string? Sinopsis { get; set; }
 
     [StringLength(50)]
-    [Display (Name = "Number Pages")]
+    [Display(Name = "Number Pages")]
     public string? NumberPages { get; set; }
 
     [ForeignKey("IdEditorial")]
     [InverseProperty("Books")]
-    public virtual Editorial? IdEditorialNavigation { get; set; }
+    public Editorial IdEditorialNavigation { get; set; } = default!;
 
     [NotMapped]
-    public virtual Author? IdAuthor { get; set; }
+    public virtual Author IdAuthor { get; set; } = default!;
     [NotMapped]
-    public virtual Author? Author { get; set; }
-    [NotMapped]
-    public virtual AuthorsHasBook? AuthorsHasBook { get; set; }
-    
+    public virtual Author Author { get; set; } = default!;
+    //[NotMapped]
+    //public virtual AuthorsHasBook? AuthorsHasBook { get; set; }
+
 
 
 }

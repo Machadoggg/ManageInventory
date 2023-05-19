@@ -36,14 +36,11 @@ namespace ManageInventory.Controllers
 
 
         [HttpGet]
-        //public async Task<ActionResult<Book>> Details(string Id)
-        //{
-        //    Book? book = await _context.Books.Where(b => b.Isbn == Id).FirstOrDefaultAsync();
-        //    return View(book);
-        //}
         public IActionResult Details(Book? book, string Id)
         {
-            book = _context.Books.Where(b => b.Isbn == Id).FirstOrDefault();
+            book = _context.Books.Where(b => b.Isbn == Id)
+                .Include(b => b.IdEditorialNavigation)
+                .FirstOrDefault();
             BookDetailDTO? bookDetailDTO = _mapper.Map<BookDetailDTO>(book);
             return View(bookDetailDTO);
         }
