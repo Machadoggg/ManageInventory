@@ -19,8 +19,8 @@ public class AuthorsHasBook
     public string? Isbn { get; set; }
 
     
-    public virtual Author? IdAuthorsNavigation { get; set; }
+    //public virtual Author? IdAuthorsNavigation { get; set; }
 
-    [ForeignKey("Isbn")]
-    public virtual Book? IsbnNavigation { get; set; }
+    //[ForeignKey("Isbn")]
+    //public virtual Book? IsbnNavigation { get; set; }
 }
