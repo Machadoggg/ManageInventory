@@ -1,21 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using NUnit.Framework;
-using Moq;
-using Microsoft.AspNetCore.Mvc;
-using AutoMapper;
+﻿using AutoMapper;
 using ManageInventory.Controllers;
 using ManageInventory.Data;
-using ManageInventory.Repositories;
-using ManageInventory.Models;
 using ManageInventory.DTO;
+using ManageInventory.Models;
+using ManageInventory.Repositories;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using System.Linq.Expressions;
-using Microsoft.EntityFrameworkCore.Query;
+using Moq;
 
 namespace NUnitTesting.Controller
 {
@@ -41,7 +32,7 @@ namespace NUnitTesting.Controller
         public async Task GetBooks_Index()
         {
             // Arrange
-            var expectedBooks = new List<Book>(); 
+            var expectedBooks = new List<Book>();
             _bookRepositoryMock.Setup(repo => repo.GetBooksAsync()).ReturnsAsync(expectedBooks);
 
             // Act
