@@ -5,7 +5,7 @@ VisualStudioVersion = 17.5.33530.505
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ManageInventory", "ManageInventory\ManageInventory.csproj", "{248E2FB4-16CE-4243-923C-E9CEF946E9F9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NUnitTesting", "NUnitTesting\NUnitTesting.csproj", "{F0B51FDA-0019-4BD8-A683-1A06737807A5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NUnitTesting", "NUnitTesting\NUnitTesting.csproj", "{F0B51FDA-0019-4BD8-A683-1A06737807A5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
