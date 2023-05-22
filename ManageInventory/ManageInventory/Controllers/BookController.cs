@@ -3,6 +3,7 @@ using ManageInventory.Data;
 using ManageInventory.DTO;
 using ManageInventory.Models;
 using ManageInventory.Repositories;
+using ManageInventory.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -17,12 +18,14 @@ namespace ManageInventory.Controllers
         private readonly LibraryContext _context;
         private readonly IBookRepository _bookRepository;
         private readonly IMapper _mapper;
+        private readonly IBookService _bookService;
 
-        public BookController(IBookRepository iBookRepository, LibraryContext context, IMapper mapper)
+        public BookController(IBookRepository iBookRepository, LibraryContext context, IMapper mapper, IBookService bookService)
         {
             _bookRepository = iBookRepository;
             _context = context;
             _mapper = mapper;
+            _bookService = bookService;
         }
 
 
@@ -31,7 +34,8 @@ namespace ManageInventory.Controllers
         [ActionName("Index")]
         public async Task<ActionResult<IEnumerable<Book>>> GetBooks()
         {
-            return View((List<Book>)await _bookRepository.GetBooksAsync());
+            //return View((List<Book>)await _bookRepository.GetBooksAsync());
+            return View((List<Book>)await _bookService.GetBooksAsync());
         }
 
 
@@ -95,8 +99,17 @@ namespace ManageInventory.Controllers
         [ActionName("Create")]
         public async Task<ActionResult<Book>> AddBooks(Book book, AuthorsHasBook authorsHasBook)
         {
-            await _bookRepository.AddBookAsync(book, authorsHasBook);
-            return RedirectToAction("Index");
+            if (!ModelState.IsValid)
+            {
+                return View(book);
+            }
+            else
+            {
+                //await _bookRepository.AddBookAsync(book, authorsHasBook);
+                await _bookService.AddBookAsync(book, authorsHasBook);
+                return RedirectToAction("Index");
+            }
+            
         }
 
         [HttpGet]
@@ -115,7 +128,7 @@ namespace ManageInventory.Controllers
             }
             else
             {
-                await _bookRepository.MergeBookAsync(book);
+                await _bookService.MergeBookAsync(book);
                 return RedirectToAction("Index");
             }
         }
@@ -123,14 +136,14 @@ namespace ManageInventory.Controllers
         [HttpGet]
         public async Task<ActionResult> Delete(string Id)
         {
-            Book? book = await _bookRepository.BookByIsbnAsync(Id);
+            Book? book = await _bookService.BookByIsbnAsync(Id);
             return View(book);
         }
 
         [HttpPost]
         public async Task<IActionResult> Delete(Book book)
         {
-            await _bookRepository.DeleteBookAsync(book);
+            await _bookService.DeleteBookAsync(book);
             return RedirectToAction("Index");
         }
 

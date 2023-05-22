@@ -1,5 +1,4 @@
-﻿@*@model ManageInventory.Models.Book*@
-@model ManageInventory.DTO.BookDetailDTO
+﻿@model ManageInventory.DTO.BookDetailDTO
 
 @{
     ViewData["Title"] = "Details";
@@ -34,15 +33,8 @@
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.IdEditorialNavigation.Name)
         </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.AuthorName)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.AuthorName)
-        </dd>
     </dl>
 </div>
 <div>
-    @*<a asp-action="Edit Book" asp-route-id="@Model?.Isbn" class="btn btn-primary">Edit</a> |*@
     <a asp-action="Index" class="btn btn-warning">Back to List</a>
 </div>

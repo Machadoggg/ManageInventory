@@ -1,6 +1,55 @@
-﻿namespace ManageInventory.Services
+﻿using ManageInventory.Data;
+using ManageInventory.Models;
+using Microsoft.AspNetCore.SignalR;
+using Microsoft.EntityFrameworkCore;
+
+namespace ManageInventory.Services
 {
-    public class BookService
+    public class BookService : IBookService
     {
+        private readonly LibraryContext _context;
+        public BookService(LibraryContext context)
+        {
+            _context = context;
+        }
+
+
+        public async Task<Book> AddBookAsync(Book book, AuthorsHasBook authorsHasBook)
+        {
+            _context.Books.Add(book); // Example: Assuming you have a Books DbSet
+            await _context.SaveChangesAsync();
+
+            return book;
+        }
+
+        public async Task<Book> BookByIsbnAsync(string isbn)
+        {
+            var book = await _context.Books.FirstOrDefaultAsync(b => b.Isbn == isbn); 
+
+            return book;
+        }
+
+        public async Task<Book> DeleteBookAsync(Book book)
+        {
+            _context.Books.Remove(book); // Example: Assuming you have a Books DbSet
+            await _context.SaveChangesAsync();
+
+            return book;
+        }
+
+        public async Task<IEnumerable<Book>> GetBooksAsync()
+        {
+            var books = await _context.Books.ToListAsync(); 
+
+            return books;
+        }
+
+        public async Task<Book> MergeBookAsync(Book book)
+        {
+            _context.Books.Update(book); // Example: Assuming you have a Books DbSet
+            await _context.SaveChangesAsync();
+
+            return book;
+        }
     }
 }

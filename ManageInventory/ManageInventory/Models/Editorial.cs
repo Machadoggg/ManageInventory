@@ -20,5 +20,5 @@ public partial class Editorial
     public string? Headquarters { get; set; }
 
     [InverseProperty("IdEditorialNavigation")]
-    public virtual ICollection<Book> Books { get; set; } = new List<Book>();
+    public ICollection<Book> Books { get; set; } = new List<Book>();
 }

@@ -1,6 +1,7 @@
 using AutoMapper;
 using ManageInventory.Data;
 using ManageInventory.Repositories;
+using ManageInventory.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -22,6 +23,7 @@ builder.Services.AddDbContext<LibraryContext>(x => x.UseSqlServer("name=SQLConne
 //builder.Services.AddDbContext<LibraryContext>();
 
 builder.Services.AddScoped<IBookRepository, BookRepository>();
+builder.Services.AddScoped<IBookService, BookService>();
 
 var app = builder.Build();
 

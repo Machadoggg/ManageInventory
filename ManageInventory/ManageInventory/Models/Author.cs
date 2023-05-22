@@ -13,12 +13,12 @@ public partial class Author
 
     [StringLength(45)]
     [Unicode(false)]
-    public string? Name { get; set; }
+    public string Name { get; set; }
 
     [StringLength(45)]
     [Unicode(false)]
     public string? LastName { get; set; }
 
     [NotMapped]
-    public virtual AuthorsHasBook? AuthorsHasBook { get; set; }
+    public AuthorsHasBook? AuthorsHasBook { get; set; }
 }
