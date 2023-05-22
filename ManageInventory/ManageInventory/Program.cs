@@ -10,7 +10,6 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 
-
 var mapperConfig = new MapperConfiguration(m =>
 {
     m.CreateMap<ManageInventory.Models.Book, ManageInventory.DTO.BookDetailDTO>();
