@@ -87,6 +87,13 @@ namespace ManageInventory.Controllers
                 return RedirectToAction("Login");
             }
         }
-        
+
+        [HttpPost]
+        public IActionResult Logout()
+        {
+            // Logout logic
+            return RedirectToAction("Login", "Home");
+        }
+
     }
 }

@@ -1,12 +1,12 @@
 ﻿@model ManageInventory.Shared.Entities.UserProfile
 @{
-    ViewData["Title"] = "Login";
+    Layout = null;
 }
 
 @using (Html.BeginForm("Login", "Home", FormMethod.Post))
 {
-    <fieldset>
-        <legend>Mvc Simple Login Application Demo</legend>
+    <fieldset style="width:400px;text-align:center;">
+        <legend>Login Travel Library</legend>
 
         @Html.AntiForgeryToken()
         @Html.ValidationSummary(true)
@@ -34,6 +34,14 @@
                 </td>
             </tr>
             <tr>
+                <td>
+                    <label>Remember Me </label>
+                </td>
+                <td>
+                    <input type="checkbox" />
+                </td>
+            </tr>
+            <tr>
                 <td></td>
                 <td>
                     <input type="submit" value="Login" />
@@ -43,4 +51,3 @@
         </table>
     </fieldset>
 }
-
