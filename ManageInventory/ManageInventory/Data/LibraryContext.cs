@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using ManageInventory.Models;
+using ManageInventory.Shared.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace ManageInventory.Data;
@@ -24,9 +25,11 @@ public partial class LibraryContext : DbContext
 
     public virtual DbSet<Editorial> Editorials { get; set; }
 
-//    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-//#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-//        => optionsBuilder.UseSqlServer("Data Source=.\\SQLEXPRESS;Initial Catalog=Library;User ID=sa;Password=Dontknow1;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False");
+    public virtual DbSet<UserProfile> UserProfiles { get; set; }
+
+    //    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    //#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
+    //        => optionsBuilder.UseSqlServer("Data Source=.\\SQLEXPRESS;Initial Catalog=Library;User ID=sa;Password=Dontknow1;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -53,6 +56,12 @@ public partial class LibraryContext : DbContext
             .WithMany(p => p.Books)
             .HasConstraintName("FK_Books_Editorials");
         });
+
+        modelBuilder.Entity<UserProfile>()
+        .HasKey(u => u.UserId);
+
+        //modelBuilder.Entity<UserProfile>()
+        //.HasNoKey();
 
         OnModelCreatingPartial(modelBuilder);
     }

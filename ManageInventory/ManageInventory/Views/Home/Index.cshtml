@@ -1,8 +1,10 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
-
+<br />
+<br />
 <div class="text-center">
-    <h1 class="display-4">Welcome to TRAVEL Library</h1>
+    <h3 class="display-6"><text>Welcome <b>@Context.Session.GetString("UserName")</b></text></h3>
+    <h3 class="display-7"><text> to TRAVEL Library</text></h3>
     <img src="~/img/library.jpeg" width="1000" height="500" />
 </div>
