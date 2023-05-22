@@ -15,11 +15,12 @@ public partial class Book
     public int? IdEditorial { get; set; }
 
     [StringLength(45)]
-    [Unicode(false)]
+    [Display(Name = "Book Title")]
     [Required(ErrorMessage = "El campo {0} es obligatorio")]
     public string? Title { get; set; }
 
     [Column(TypeName = "text")]
+    [Display(Name = "Synopsis")]
     public string? Sinopsis { get; set; }
 
     [StringLength(50)]

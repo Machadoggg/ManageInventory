@@ -3,6 +3,7 @@ using ManageInventory.Controllers;
 using ManageInventory.Data;
 using ManageInventory.Models;
 using ManageInventory.Repositories;
+using ManageInventory.Services;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
 
@@ -15,6 +16,7 @@ namespace NUnitTesting.Logic
         private Mock<IBookRepository> _bookRepositoryMock;
         private Mock<LibraryContext> _contextMock;
         private Mock<IMapper> _mapperMock;
+        private Mock<IBookService> _bookServiceMock;
 
         [SetUp]
         public void Setup()
@@ -22,6 +24,7 @@ namespace NUnitTesting.Logic
             _bookRepositoryMock = new Mock<IBookRepository>();
             _contextMock = new Mock<LibraryContext>();
             _mapperMock = new Mock<IMapper>();
+            _bookServiceMock = new Mock<IBookService>();
 
         }
 
@@ -55,7 +58,7 @@ namespace NUnitTesting.Logic
                 .ReturnsAsync(book);
             contextMock.Setup(c => c.SaveChangesAsync(CancellationToken.None))
                 .Returns(Task.FromResult(0));
-            var bookController = new BookController(bookRepositoryMock.Object, contextMock.Object, mapperMock.Object);
+            var bookController = new BookController(bookRepositoryMock.Object, contextMock.Object, mapperMock.Object, _bookServiceMock.Object);
 
             // Act
             var result = await bookController.AddBooks(book, authorsHasBook);
