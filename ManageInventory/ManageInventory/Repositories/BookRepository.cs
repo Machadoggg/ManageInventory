@@ -76,7 +76,11 @@ namespace ManageInventory.Repositories
             Book ResultDeleteBook = default;
             try
             {
+                var relatedRecords = await _context.AuthorsHasBooks
+                    .Where(r => r.Isbn == book.Isbn)
+                    .ToListAsync();
                 _context.Remove(book).State = EntityState.Deleted;
+                _context.RemoveRange(relatedRecords);
                 if (await _context.SaveChangesAsync() > 0)
                 {
                     ResultDeleteBook = book;

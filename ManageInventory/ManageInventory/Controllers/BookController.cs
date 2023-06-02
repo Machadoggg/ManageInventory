@@ -17,6 +17,7 @@ namespace ManageInventory.Controllers
         private readonly IBookService _bookService;
 
         public BookController(
+            Repositories.IBookRepository @object,
             LibraryContext context,
             IMapper mapper,
             IBookService bookService

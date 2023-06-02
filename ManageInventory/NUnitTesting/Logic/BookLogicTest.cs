@@ -11,8 +11,6 @@ namespace NUnitTesting.Logic
 {
     public class BookLogicTest
     {
-        private BookController _bookController;
-        private BookRepository _bookRepository;
         private Mock<IBookRepository> _bookRepositoryMock;
         private Mock<LibraryContext> _contextMock;
         private Mock<IMapper> _mapperMock;
@@ -25,14 +23,12 @@ namespace NUnitTesting.Logic
             _contextMock = new Mock<LibraryContext>();
             _mapperMock = new Mock<IMapper>();
             _bookServiceMock = new Mock<IBookService>();
-
         }
 
 
         [Test]
         public async Task AddBookAsync_WithValidData_ReturnsNewBook()
         {
-
             // Arrange
             var book = new Book
             {
