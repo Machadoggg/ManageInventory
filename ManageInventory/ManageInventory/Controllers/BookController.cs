@@ -34,10 +34,8 @@ namespace ManageInventory.Controllers
         [ActionName("Index")]
         public async Task<ActionResult<IEnumerable<Book>>> GetBooks()
         {
-            //return View((List<Book>)await _bookRepository.GetBooksAsync());
             return View((List<Book>)await _bookService.GetBooksAsync());
         }
-
 
         [HttpGet]
         public IActionResult Details(Book? book, string Id)
@@ -48,7 +46,6 @@ namespace ManageInventory.Controllers
             BookDetailDTO? bookDetailDTO = _mapper.Map<BookDetailDTO>(book);
             return View(bookDetailDTO);
         }
-
 
         [HttpGet]
         public IActionResult Create()
@@ -105,7 +102,6 @@ namespace ManageInventory.Controllers
             }
             else
             {
-                //await _bookRepository.AddBookAsync(book, authorsHasBook);
                 await _bookService.AddBookAsync(book, authorsHasBook);
                 return RedirectToAction("Index");
             }

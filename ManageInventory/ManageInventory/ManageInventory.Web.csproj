@@ -17,6 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ManageInventory.Persistence\ManageInventory.Persistence.csproj" />
     <ProjectReference Include="..\ManageInventory.Shared\ManageInventory.Shared.csproj" />
   </ItemGroup>
 

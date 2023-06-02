@@ -16,7 +16,7 @@ namespace ManageInventory.Services
 
         public async Task<Book> AddBookAsync(Book book, AuthorsHasBook authorsHasBook)
         {
-            _context.Books.Add(book); // Example: Assuming you have a Books DbSet
+            _context.Books.Add(book);
             await _context.SaveChangesAsync();
 
             return book;
@@ -31,7 +31,7 @@ namespace ManageInventory.Services
 
         public async Task<Book> DeleteBookAsync(Book book)
         {
-            _context.Books.Remove(book); // Example: Assuming you have a Books DbSet
+            _context.Books.Remove(book); 
             await _context.SaveChangesAsync();
 
             return book;
@@ -46,7 +46,7 @@ namespace ManageInventory.Services
 
         public async Task<Book> MergeBookAsync(Book book)
         {
-            _context.Books.Update(book); // Example: Assuming you have a Books DbSet
+            _context.Books.Update(book); 
             await _context.SaveChangesAsync();
 
             return book;

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using ManageInventory.Models;
-using ManageInventory.Shared.Entities;
+using ManageInventory.Persistence.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace ManageInventory.Data;
