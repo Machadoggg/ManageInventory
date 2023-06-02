@@ -1,10 +1,7 @@
 ﻿using ManageInventory.Data;
-using ManageInventory.Persistence;
+using ManageInventory.Persistence.Entities;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
-using System.Linq;
-using Microsoft.AspNetCore.Http;
-using ManageInventory.Persistence.Entities;
 
 namespace ManageInventory.Controllers
 {
@@ -41,7 +38,7 @@ namespace ManageInventory.Controllers
         {
             if (ModelState.IsValid)
             {
-                var obj =  _contex.UserProfiles.FirstOrDefault(a => a.UserName.Equals(objUser.UserName) && a.Password.Equals(objUser.Password));
+                var obj = _contex.UserProfiles.FirstOrDefault(a => a.UserName.Equals(objUser.UserName) && a.Password.Equals(objUser.Password));
                 if (obj != null)
                 {
                     HttpContext.Session.SetString("UserID", obj.UserId.ToString());

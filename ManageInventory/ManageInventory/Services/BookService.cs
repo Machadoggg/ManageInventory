@@ -1,6 +1,5 @@
 ﻿using ManageInventory.Data;
 using ManageInventory.Persistence.Entities;
-using Microsoft.AspNetCore.SignalR;
 using Microsoft.EntityFrameworkCore;
 
 namespace ManageInventory.Services
@@ -24,14 +23,14 @@ namespace ManageInventory.Services
 
         public async Task<Book> BookByIsbnAsync(string isbn)
         {
-            var book = await _context.Books.FirstOrDefaultAsync(b => b.Isbn == isbn); 
+            var book = await _context.Books.FirstOrDefaultAsync(b => b.Isbn == isbn);
 
             return book;
         }
 
         public async Task<Book> DeleteBookAsync(Book book)
         {
-            _context.Books.Remove(book); 
+            _context.Books.Remove(book);
             await _context.SaveChangesAsync();
 
             return book;
@@ -39,14 +38,14 @@ namespace ManageInventory.Services
 
         public async Task<IEnumerable<Book>> GetBooksAsync()
         {
-            var books = await _context.Books.ToListAsync(); 
+            var books = await _context.Books.ToListAsync();
 
             return books;
         }
 
         public async Task<Book> MergeBookAsync(Book book)
         {
-            _context.Books.Update(book); 
+            _context.Books.Update(book);
             await _context.SaveChangesAsync();
 
             return book;

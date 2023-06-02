@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using ManageInventory.Persistence;
-using ManageInventory.Persistence.Entities;
+﻿using ManageInventory.Persistence.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace ManageInventory.Data;
@@ -27,7 +24,7 @@ public partial class LibraryContext : DbContext
 
     public virtual DbSet<UserProfile> UserProfiles { get; set; }
 
-    
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
 

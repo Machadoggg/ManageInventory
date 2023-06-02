@@ -8,8 +8,6 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Drawing;
 
 namespace ManageInventory.Controllers
 {
@@ -20,7 +18,12 @@ namespace ManageInventory.Controllers
         private readonly IMapper _mapper;
         private readonly IBookService _bookService;
 
-        public BookController(IBookRepository iBookRepository, LibraryContext context, IMapper mapper, IBookService bookService)
+        public BookController(
+            IBookRepository iBookRepository, 
+            LibraryContext context, 
+            IMapper mapper, 
+            IBookService bookService
+            )
         {
             _bookRepository = iBookRepository;
             _context = context;
@@ -105,7 +108,7 @@ namespace ManageInventory.Controllers
                 await _bookService.AddBookAsync(book, authorsHasBook);
                 return RedirectToAction("Index");
             }
-            
+
         }
 
         [HttpGet]
