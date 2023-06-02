@@ -50,7 +50,7 @@ namespace ManageInventory.Controllers
         [HttpGet]
         public IActionResult Create()
         {
-            List<DropDownListModel> listEditorials = null;
+            List<DropDownListModel> listEditorials = null!;
 
             listEditorials = (from d in _context.Editorials.Where(e => e.IdEditorial != 0)
                               select new DropDownListModel

@@ -55,7 +55,7 @@ namespace ManageInventory.Repositories
 
         public async Task<Book> MergeBookAsync(Book book)
         {
-            Book ResultEditBook = default;
+            Book ResultEditBook = default!;
             try
             {
                 _context.Attach(book).State = EntityState.Modified;
@@ -73,7 +73,7 @@ namespace ManageInventory.Repositories
 
         public async Task<Book> DeleteBookAsync(Book book)
         {
-            Book ResultDeleteBook = default;
+            Book ResultDeleteBook = default!;
             try
             {
                 var relatedRecords = await _context.AuthorsHasBooks
