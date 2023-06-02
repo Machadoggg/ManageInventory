@@ -1,8 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿//using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace ManageInventory.Models;
+namespace ManageInventory.Persistence.Entities;
 
 public partial class Book
 {

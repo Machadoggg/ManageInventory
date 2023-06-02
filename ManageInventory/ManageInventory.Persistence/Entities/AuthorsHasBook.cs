@@ -1,10 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿//using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace ManageInventory.Models;
+namespace ManageInventory.Persistence.Entities;
 
-[Keyless]
+//[Keyless]
 [Table("Authors_Has_Books")]
 public class AuthorsHasBook
 {

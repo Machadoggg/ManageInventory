@@ -10,7 +10,7 @@ builder.Services.AddControllersWithViews();
 
 var mapperConfig = new MapperConfiguration(m =>
 {
-    m.CreateMap<ManageInventory.Models.Book, ManageInventory.DTO.BookDetailDTO>();
+    m.CreateMap<ManageInventory.Persistence.Entities.Book, ManageInventory.DTO.BookDetailDTO>();
 });
 IMapper mapper = mapperConfig.CreateMapper();
 builder.Services.AddSingleton(mapper);

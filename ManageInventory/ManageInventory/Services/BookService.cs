@@ -1,5 +1,5 @@
 ﻿using ManageInventory.Data;
-using ManageInventory.Models;
+using ManageInventory.Persistence.Entities;
 using Microsoft.AspNetCore.SignalR;
 using Microsoft.EntityFrameworkCore;
 

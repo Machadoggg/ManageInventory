@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using ManageInventory.Controllers;
 using ManageInventory.Data;
-using ManageInventory.Models;
+using ManageInventory.Persistence.Entities;
 using ManageInventory.Repositories;
 using ManageInventory.Services;
 using Microsoft.AspNetCore.Mvc;

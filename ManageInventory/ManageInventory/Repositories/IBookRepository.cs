@@ -1,4 +1,4 @@
-﻿using ManageInventory.Models;
+﻿using ManageInventory.Persistence.Entities;
 
 namespace ManageInventory.Repositories
 {

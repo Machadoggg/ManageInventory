@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using Microsoft.EntityFrameworkCore;
+//using Microsoft.EntityFrameworkCore;
 
-namespace ManageInventory.Models;
+namespace ManageInventory.Persistence.Entities;
 
 public partial class Editorial
 {
@@ -12,11 +12,11 @@ public partial class Editorial
     public int IdEditorial { get; set; }
 
     [StringLength(45)]
-    [Unicode(false)]
+    //[Unicode(false)]
     public string? Name { get; set; }
 
     [StringLength(45)]
-    [Unicode(false)]
+    //[Unicode(false)]
     public string? Headquarters { get; set; }
 
     [InverseProperty("IdEditorialNavigation")]

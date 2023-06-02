@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using ManageInventory.Models;
+using ManageInventory.Persistence.Entities;
 
 namespace ManageInventory.DTO
 {

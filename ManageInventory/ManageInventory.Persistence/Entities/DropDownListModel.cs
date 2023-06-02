@@ -1,4 +1,4 @@
-﻿namespace ManageInventory.Models
+﻿namespace ManageInventory.Persistence.Entities
 {
     public class DropDownListModel
     {
