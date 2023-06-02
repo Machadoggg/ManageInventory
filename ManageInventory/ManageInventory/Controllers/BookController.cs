@@ -2,7 +2,6 @@
 using ManageInventory.Data;
 using ManageInventory.DTO;
 using ManageInventory.Persistence.Entities;
-using ManageInventory.Repositories;
 using ManageInventory.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -14,18 +13,15 @@ namespace ManageInventory.Controllers
     public class BookController : Controller
     {
         private readonly LibraryContext _context;
-        private readonly IBookRepository _bookRepository;
         private readonly IMapper _mapper;
         private readonly IBookService _bookService;
 
         public BookController(
-            IBookRepository iBookRepository, 
-            LibraryContext context, 
-            IMapper mapper, 
+            LibraryContext context,
+            IMapper mapper,
             IBookService bookService
             )
         {
-            _bookRepository = iBookRepository;
             _context = context;
             _mapper = mapper;
             _bookService = bookService;
@@ -114,7 +110,7 @@ namespace ManageInventory.Controllers
         [HttpGet]
         public async Task<ActionResult> Edit(string Id)
         {
-            Book? book = await _bookRepository.BookByIsbnAsync(Id);
+            Book? book = await _bookService.BookByIsbnAsync(Id);
             return View(book);
         }
 
