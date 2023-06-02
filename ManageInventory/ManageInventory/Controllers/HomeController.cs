@@ -1,5 +1,5 @@
 ﻿using ManageInventory.Data;
-using ManageInventory.Models;
+using ManageInventory.Persistence;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using System.Linq;

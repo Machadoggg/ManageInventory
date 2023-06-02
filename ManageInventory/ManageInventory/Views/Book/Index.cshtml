@@ -1,5 +1,4 @@
 ﻿@model IEnumerable<ManageInventory.Persistence.Entities.Book>
-@*@model IEnumerable<ManageInventory.DTO.BookDetailDTO>*@
 @{
     ViewData["Title"] = "Index";
 }
@@ -23,6 +22,9 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.NumberPages)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdEditorialNavigation.Name)
             </th>
             <th>Actions</th>
         </tr>

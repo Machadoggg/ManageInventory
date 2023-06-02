@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using ManageInventory.Models;
+using ManageInventory.Persistence;
 using ManageInventory.Persistence.Entities;
 using Microsoft.EntityFrameworkCore;
 
@@ -27,22 +27,9 @@ public partial class LibraryContext : DbContext
 
     public virtual DbSet<UserProfile> UserProfiles { get; set; }
 
-    //    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-    //#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-    //        => optionsBuilder.UseSqlServer("Data Source=.\\SQLEXPRESS;Initial Catalog=Library;User ID=sa;Password=Dontknow1;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False");
-
+    
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        //modelBuilder.Entity<AuthorsHasBook>(entity =>
-        //{
-        //    entity.HasOne(d => d.IdAuthorsNavigation)
-        //    .WithMany()
-        //    .HasConstraintName("FK_Authors_Has_Books_Authors");
-
-        //    entity.HasOne(d => d.IsbnNavigation)
-        //    .WithMany()
-        //    .HasConstraintName("FK_Authors_Has_Books_Books");
-        //});
 
         modelBuilder.Entity<AuthorsHasBook>()
             .HasKey(a => new { a.IdAuthor, a.Isbn });
@@ -60,8 +47,6 @@ public partial class LibraryContext : DbContext
         modelBuilder.Entity<UserProfile>()
         .HasKey(u => u.UserId);
 
-        //modelBuilder.Entity<UserProfile>()
-        //.HasNoKey();
 
         OnModelCreatingPartial(modelBuilder);
     }
