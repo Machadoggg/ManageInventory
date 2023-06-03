@@ -12,11 +12,9 @@ public partial class Author
     public int IdAuthor { get; set; }
 
     [StringLength(45)]
-    //[Unicode(false)]
     public string Name { get; set; }
 
     [StringLength(45)]
-    //[Unicode(false)]
     public string? LastName { get; set; }
 
     [NotMapped]

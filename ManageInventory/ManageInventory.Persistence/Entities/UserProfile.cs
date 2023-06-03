@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace ManageInventory.Persistence.Entities
 {
@@ -11,9 +6,14 @@ namespace ManageInventory.Persistence.Entities
     {
         [Key]
         public int UserId { get; set; }
+
         [Display(Name = "User Name")]
+        [Required(ErrorMessage = "El campo {0} es obligatorio")]
         public string UserName { get; set; } = default!;
+
+        [Required(ErrorMessage = "El campo {0} es obligatorio")]
         public string Password { get; set; } = default!;
+
         public bool IsActive { get; set; }
     }
 }

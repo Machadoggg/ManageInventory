@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using System.Data;
 
 namespace ManageInventory.Controllers
 {
@@ -30,7 +31,6 @@ namespace ManageInventory.Controllers
 
 
         [HttpGet]
-        [AllowAnonymous]
         [ActionName("Index")]
         public async Task<ActionResult<IEnumerable<Book>>> GetBooks()
         {
@@ -48,6 +48,7 @@ namespace ManageInventory.Controllers
         }
 
         [HttpGet]
+        //[Authorize(Roles = "Admin")]
         public IActionResult Create()
         {
             List<DropDownListModel> listEditorials = null!;
@@ -92,7 +93,7 @@ namespace ManageInventory.Controllers
         }
 
         [HttpPost]
-        [AllowAnonymous]
+        //[Authorize(Roles = "Admin")]
         [ActionName("Create")]
         public async Task<ActionResult<Book>> AddBooks(Book book, AuthorsHasBook authorsHasBook)
         {
@@ -109,6 +110,7 @@ namespace ManageInventory.Controllers
         }
 
         [HttpGet]
+        //[Authorize(Roles = "Admin")]
         public async Task<ActionResult> Edit(string Id)
         {
             Book? book = await _bookService.BookByIsbnAsync(Id);
@@ -116,6 +118,7 @@ namespace ManageInventory.Controllers
         }
 
         [HttpPost]
+        //[Authorize(Roles = "Admin")]
         public async Task<ActionResult> Edit(Book book)
         {
             if (!ModelState.IsValid)
@@ -130,6 +133,7 @@ namespace ManageInventory.Controllers
         }
 
         [HttpGet]
+        //[Authorize(Roles = "Admin")]
         public async Task<ActionResult> Delete(string Id)
         {
             Book? book = await _bookService.BookByIsbnAsync(Id);
@@ -137,6 +141,7 @@ namespace ManageInventory.Controllers
         }
 
         [HttpPost]
+        //[Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(Book book)
         {
             await _bookService.DeleteBookAsync(book);
