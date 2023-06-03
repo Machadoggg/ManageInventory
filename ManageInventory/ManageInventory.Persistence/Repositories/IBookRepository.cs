@@ -1,6 +1,6 @@
 ﻿using ManageInventory.Persistence.Entities;
 
-namespace ManageInventory.Repositories
+namespace ManageInventory.Persistence.Repositories
 {
     public interface IBookRepository
     {

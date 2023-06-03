@@ -1,7 +1,7 @@
 ﻿using ManageInventory.Persistence.Entities;
-using ManageInventory.Repositories;
+using ManageInventory.Persistence.Repositories;
 
-namespace ManageInventory.Services
+namespace ManageInventory.Services.Books
 {
     public class BookService : IBookService
     {

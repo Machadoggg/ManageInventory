@@ -1,7 +1,7 @@
 using AutoMapper;
 using ManageInventory.Persistence.Data;
-using ManageInventory.Repositories;
-using ManageInventory.Services;
+using ManageInventory.Services.Books;
+using ManageInventory.Persistence.Repositories;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);

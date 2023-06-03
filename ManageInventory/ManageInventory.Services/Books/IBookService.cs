@@ -1,6 +1,6 @@
 ﻿using ManageInventory.Persistence.Entities;
 
-namespace ManageInventory.Services
+namespace ManageInventory.Services.Books
 {
     public interface IBookService
     {

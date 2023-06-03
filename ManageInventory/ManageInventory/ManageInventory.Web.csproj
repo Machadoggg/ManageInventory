@@ -18,10 +18,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ManageInventory.Persistence\ManageInventory.Persistence.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Data\" />
+    <ProjectReference Include="..\ManageInventory.Services\ManageInventory.Services.csproj" />
   </ItemGroup>
 
 </Project>

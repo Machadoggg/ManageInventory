@@ -2,7 +2,7 @@
 using ManageInventory.Persistence.Data;
 using ManageInventory.DTO;
 using ManageInventory.Persistence.Entities;
-using ManageInventory.Services;
+using ManageInventory.Services.Books;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -18,7 +18,7 @@ namespace ManageInventory.Controllers
         private readonly IBookService _bookService;
 
         public BookController(
-            Repositories.IBookRepository @object,
+            Persistence.Repositories.IBookRepository @object,
             LibraryContext context,
             IMapper mapper,
             IBookService bookService

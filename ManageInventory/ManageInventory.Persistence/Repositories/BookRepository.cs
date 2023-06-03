@@ -2,7 +2,7 @@
 using ManageInventory.Persistence.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace ManageInventory.Repositories
+namespace ManageInventory.Persistence.Repositories
 {
     public class BookRepository : IBookRepository
     {

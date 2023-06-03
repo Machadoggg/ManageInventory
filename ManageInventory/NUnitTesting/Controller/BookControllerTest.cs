@@ -1,10 +1,10 @@
 ﻿using AutoMapper;
 using ManageInventory.Controllers;
-using ManageInventory.Data;
+using ManageInventory.Persistence.Data;
 using ManageInventory.DTO;
 using ManageInventory.Persistence.Entities;
-using ManageInventory.Repositories;
-using ManageInventory.Services;
+using ManageInventory.Persistence.Repositories;
+using ManageInventory.Services.Books;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Moq;
