@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using ManageInventory.Data;
+using ManageInventory.Persistence.Data;
 using ManageInventory.DTO;
 using ManageInventory.Persistence.Entities;
 using ManageInventory.Services;

@@ -1,4 +1,4 @@
-﻿using ManageInventory.Data;
+﻿using ManageInventory.Persistence.Data;
 using ManageInventory.Persistence.Entities;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;

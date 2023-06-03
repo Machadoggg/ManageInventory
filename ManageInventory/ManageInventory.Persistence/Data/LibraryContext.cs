@@ -1,7 +1,7 @@
 ﻿using ManageInventory.Persistence.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace ManageInventory.Data;
+namespace ManageInventory.Persistence.Data;
 
 public partial class LibraryContext : DbContext
 {
@@ -34,11 +34,12 @@ public partial class LibraryContext : DbContext
         modelBuilder.Entity<Book>(entity =>
         {
             entity.HasKey(e => e.Isbn)
-            .HasName("PK_Books_1");
+                .HasAnnotation("Relational:Name", "PK_Books_1");
 
             entity.HasOne(d => d.IdEditorialNavigation)
-            .WithMany(p => p.Books)
-            .HasConstraintName("FK_Books_Editorials");
+                .WithMany(p => p.Books)
+                .HasForeignKey(d => d.IdEditorial)
+                .OnDelete(DeleteBehavior.ClientSetNull);
         });
 
         modelBuilder.Entity<UserProfile>()

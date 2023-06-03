@@ -1,5 +1,5 @@
 using AutoMapper;
-using ManageInventory.Data;
+using ManageInventory.Persistence.Data;
 using ManageInventory.Repositories;
 using ManageInventory.Services;
 using Microsoft.EntityFrameworkCore;
