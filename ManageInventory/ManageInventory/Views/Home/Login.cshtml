@@ -3,51 +3,69 @@
     Layout = null;
 }
 
-@using (Html.BeginForm("Login", "Home", FormMethod.Post))
-{
-    <fieldset style="width:400px;text-align:center;">
-        <legend>Login Travel Library</legend>
+<style>
+    .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 50vh;
+    }
 
-        @Html.AntiForgeryToken()
-        @Html.ValidationSummary(true)
-        @if (@ViewBag.Message != null)
+    .login-form {
+        width: 400px;
+        text-align: center;
+    }
+</style>
+
+<div class="container">
+    <div class="login-form">
+        @using (Html.BeginForm("Login", "Home", FormMethod.Post))
         {
-            <div style="border: 1px solid red">
-                @ViewBag.Message
-            </div>
+            <fieldset style="width:400px;text-align:center;">
+                <legend>Login Travel Library</legend>
+
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true)
+                @if (@ViewBag.Message != null)
+                {
+                    <div style="border: 1px solid red">
+                        @ViewBag.Message
+                    </div>
+                }
+                <table>
+                    <tr>
+                        <td>@Html.LabelFor(a => a.UserName)</td>
+                        <td>@Html.TextBoxFor(a => a.UserName)</td>
+                        <td>@Html.ValidationMessageFor(a => a.UserName)</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.LabelFor(a => a.Password)
+                        </td>
+                        <td>
+                            @Html.PasswordFor(a => a.Password)
+                        </td>
+                        <td>
+                            @Html.ValidationMessageFor(a => a.Password)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>Remember Me </label>
+                        </td>
+                        <td>
+                            <input type="checkbox" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>
+                            <input type="submit" value="Login" />
+                        </td>
+                        <td></td>
+                    </tr>
+                </table>
+            </fieldset>
         }
-        <table>
-            <tr>
-                <td>@Html.LabelFor(a => a.UserName)</td>
-                <td>@Html.TextBoxFor(a => a.UserName)</td>
-                <td>@Html.ValidationMessageFor(a => a.UserName)</td>
-            </tr>
-            <tr>
-                <td>
-                    @Html.LabelFor(a => a.Password)
-                </td>
-                <td>
-                    @Html.PasswordFor(a => a.Password)
-                </td>
-                <td>
-                    @Html.ValidationMessageFor(a => a.Password)
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <label>Remember Me </label>
-                </td>
-                <td>
-                    <input type="checkbox" />
-                </td>
-            </tr>
-            <tr>
-                <td></td>
-                <td>
-                    <input type="submit" value="Login" />
-                </td>
-                <td></td>
-            </tr>
-        </table>
-    </fieldset>
-}
+    </div>
+</div>
