@@ -1,9 +1,8 @@
 ﻿using AutoMapper;
-using ManageInventory.Persistence.Data;
 using ManageInventory.DTO;
+using ManageInventory.Persistence.Data;
 using ManageInventory.Persistence.Entities;
 using ManageInventory.Services.Books;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -30,12 +29,34 @@ namespace ManageInventory.Controllers
         }
 
 
+        //[HttpGet]
+        //[ActionName("Index")]
+        //public async Task<ActionResult<IEnumerable<Book>>> GetBooks()
+        //{
+        //    return View((List<Book>)await _bookService.GetBooksAsync());
+        //}
         [HttpGet]
         [ActionName("Index")]
-        public async Task<ActionResult<IEnumerable<Book>>> GetBooks()
+        public async Task<ActionResult<IEnumerable<Book>>> GetBooks(int page = 1)
         {
-            return View((List<Book>)await _bookService.GetBooksAsync());
+            const int pageSize = 10;
+
+            if (page < 1)
+            {
+                page = 1;
+            }
+
+            int recsCount = _context.Books.Count();
+            var pager = new Pager(recsCount, page, pageSize);
+            int recSkip = (page - 1) * pageSize;
+            List<Book> books = _context.Books.Skip(recSkip).Take(pager.PageSize).ToList();
+            this.ViewBag.Pager = pager;
+
+            return View(books);
         }
+
+
+
 
         [HttpGet]
         public IActionResult Details(Book? book, string Id)
